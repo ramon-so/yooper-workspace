@@ -3,7 +3,7 @@
         <button class="btn btn-warning" style="float: right; margin-right: -8.5rem;" title="EDITAR" onclick="abrir_modal_editar_cliente()"
             type="button"><i class="fa-solid fa-pen-to-square"></i></button>
         <a href="#">
-            <img style="max-width: 100px" src="{{ asset('storage/app/public/clientes/cliente'.$cliente->id.'.jpeg') }}"
+            <img style="max-width: 100px" src="{{ asset('./../storage/app/public/clientes/cliente'.$cliente->id.'.jpeg') }}"
                 class="rounded-circle user-foto-perfil mt-4" alt="Logo não encontrada"
                 onerror=""
 
