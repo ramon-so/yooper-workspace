@@ -5,7 +5,7 @@
         <a href="#">
             <img style="max-width: 100px" src="{{ asset('clientes/cliente'.$cliente->id.'.jpeg') }}"
                 class="rounded-circle user-foto-perfil mt-4" alt="Logo não encontrada"
-                onerror="this.src='./../app/storage/app/app/public/errors/imageNotFound.png'; this.onerror = null"
+                onerror=""
 
                 >
         </a>
