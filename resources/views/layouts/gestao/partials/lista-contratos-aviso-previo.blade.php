@@ -29,8 +29,8 @@
                     </span>
                 </td>
                 <td>
-                    <img class="tamanho-imagem" src="./../app/storage/app/app/public/clientes/cliente<?php echo $contratos_aviso_previo[$i]['cliente_id'] ?>.jpeg" alt="Logo não encontrada"
-                    onerror="this.src='./../app/storage/app/app/public/errors/imageNotFound.png'; this.onerror = null">
+                    <img class="tamanho-imagem" src="{{ asset('storage/clientes/cliente'.$contratos_aviso_previo[$i]['cliente_id'].'.jpeg') }}" alt="Logo não encontrada"
+                    onerror="this.src='{{ asset('storage/errors/imageNotFound.png') }}'; this.onerror = null">
 
                 </td>
                 <td>{{$contratos_aviso_previo[$i]['tempo_contrato']}}</td>

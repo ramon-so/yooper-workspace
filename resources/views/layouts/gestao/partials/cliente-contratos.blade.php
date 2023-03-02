@@ -252,7 +252,7 @@
 
                         @if ($contrato->briefing != null)
                             <p class="mb-1"> Briefing: <b><a
-                                        href="./../app/storage/app/app/public/<?php echo $contrato->briefing; ?>"
+                                        href="{{ asset('storage/'.$contrato->briefing) }}"
                                         download>Acessar briefing</a></b></p>
                         @else
                             <p class="mb-1"> Briefing não cadastrado <button
@@ -261,7 +261,7 @@
                         @endif
                         @if ($contrato->escopo != null)
                             <p class="mb-1"> Escopo: <b><a
-                                        href="./../app/storage/app/app/public/clientes/contratos/escopo_contrato<?php echo $contrato->contrato_id; ?>.pdf"
+                                        href="{{ asset('storage/'.$contrato->escopo) }}"
                                         download>Acessar
                                         escopo</a></b></p>
                         @else
@@ -450,10 +450,10 @@
                                     data-target="#modal-tabela-financeira">
                                     Alterar tabelas
                                 </button>
-                                <img src="./../app/storage/app/app/public/tabelas_financeiras/tabela_cliente<?php echo $cliente->id; ?>.jpeg"
+                                <img src="{{ asset('storage/tabelas_financeiras/tabela_cliente'.$cliente->id.'.jpeg') }}"
                                     class="img-fluid mx-auto d-block" alt="Tabela escalonada"
                                     style="width: 600px; float: left"
-                                    onerror="this.src='./../app/storage/app/app/public/errors/imageNotFound.png'; this.alt='Não existe nenhuma tabela de Fee escalonado nesse contrato'; this.onerror = null">
+                                    onerror="this.src='{{ asset('storage/errors/imageNotFound.png') }}'; this.alt='Não existe nenhuma tabela de Fee escalonado nesse contrato'; this.onerror = null">
                             </div>
                         </div>
                     </div>

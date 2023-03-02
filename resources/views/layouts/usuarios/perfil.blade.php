@@ -25,7 +25,7 @@
                     <div class="col">
                         <div class="card-profile-stats d-flex justify-content-center mt-0">
                             <div>
-                                <span class="heading">{{Auth::user()->created_at->format('d/m/Y')}}</span>
+                                <span class="heading">{{Auth::user()->created_at}}</span>
                                 <span class="description">Data de Cadastro</span>
                             </div>
                         </div>

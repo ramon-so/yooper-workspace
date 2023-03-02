@@ -13,8 +13,8 @@
         @for ($i = 0; $i < count($cliente_lista); $i++)       
             <tr>
                 <td>
-                    <img class="tamanho-imagem" src="./../app/storage/app/app/public/clientes/cliente{{$cliente_lista[$i]['id']}}.jpeg" alt="Cliente sem logo"
-                    onerror="this.src='./../app/storage/app/app/public/errors/imageNotFound.png'; this.onerror = null">
+                    <img class="tamanho-imagem" src="{{ asset('storage/clientes/cliente'.$cliente_lista[$i]['id'].'.jpeg') }}" alt="Cliente sem logo"
+                    onerror="this.src='{{ asset('storage/errors/imageNotFound.png') }}'; this.onerror = null">
                 </td>
                 <td class="budget">
                     {{ $cliente_lista[$i]['empresa'] }}

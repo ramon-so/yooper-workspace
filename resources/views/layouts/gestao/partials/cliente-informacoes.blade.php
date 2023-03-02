@@ -3,9 +3,9 @@
         <button class="btn btn-warning" style="float: right; margin-right: -8.5rem;" title="EDITAR" onclick="abrir_modal_editar_cliente()"
             type="button"><i class="fa-solid fa-pen-to-square"></i></button>
         <a href="#">
-            <img style="max-width: 100px" src="/storage/clientes/cliente{{$cliente->id}}.jpeg"
+            <img style="max-width: 100px" src="{{ asset('storage/clientes/cliente'.$cliente->id.'.jpeg') }}"
                 class="rounded-circle user-foto-perfil mt-4" alt="Logo não encontrada"
-                onerror=""
+                onerror="this.src='{{ asset('storage/errors/imageNotFound.png') }}'; this.onerror = null"
 
                 >
         </a>
@@ -83,7 +83,7 @@
             <div class="ferramentas-box">
 
                 @if ($cliente->analise_inicial != null)
-                    <a href="./../app/storage/app/app/public/{{ $cliente->analise_inicial }}"
+                    <a href="{{ asset('storage/'.$cliente->analise_inicial) }}"
                         target="_blank" title="Análise Inicial">
 
                         <i class="fa-sharp fa-solid fa-magnifying-glass-chart"></i>
@@ -91,12 +91,12 @@
                 @endif
 
                 @if ($cliente->raio_x != null)
-                    <a href="./../app/storage/app/app/public/{{ $cliente->raio_x }}"
+                    <a href="{{ asset('storage/'.$cliente->raio_x) }}"
                         target="_blank" title="Raio-X"><i class="fa-solid fa-gears"></i></a>
                 @endif
 
                 @if ($cliente->briefing != null)
-                    <a href="./../app/storage/app/app/public/{{ $cliente->briefing }}"
+                    <a href="{{ asset('storage/'.$cliente->briefing) }}"
                         target="_blank" title="Briefing geral"><i class="fa-regular fa-id-card"></i></a>
                 @endif
             </div>

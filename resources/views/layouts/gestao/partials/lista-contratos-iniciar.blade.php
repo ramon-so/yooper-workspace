@@ -31,9 +31,9 @@
 
                 </td>
                 <td>
-                    <img class="tamanho-imagem" class="tamanho-imagem" src="./../app/storage/app/app/public/clientes/cliente{{$contratos_pendentes[$i]['cliente_id']}}.jpeg" alt="Cliente sem logo"
+                    <img class="tamanho-imagem" class="tamanho-imagem" src="{{ asset('storage/clientes/cliente'.$contratos_pendentes[$i]['cliente_id'].'.jpeg') }}" alt="Cliente sem logo"
 
-                    onerror="this.src='./../app/storage/app/app/public/errors/imageNotFound.png'; this.onerror = null">
+                    onerror="this.src='{{ asset('storage/errors/imageNotFound.png') }}'; this.onerror = null">
 
                 </td>
                 <td>{{$contratos_pendentes[$i]['tempo_contrato']}}</td>

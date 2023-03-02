@@ -17,9 +17,9 @@
             <tr>
                
                     <td> <a href="/cliente/{{ $cliente->id }}"><img style="width: 50px;"
-                            src="./../app/storage/app/app/public/clientes/cliente{{ $cliente->cliente_id }}.jpeg"
+                            src="{{ asset('storage/clientes/cliente'.$cliente->cliente_id.'.jpeg') }}"
                             alt="Logo não encontrada"
-                            onerror="this.src='./../app/storage/app/app/public/errors/imageNotFound.png' this.onerror = null">
+                            onerror="this.src='{{ asset('storage/errors/imageNotFound.png') }}' this.onerror = null">
                         </td>
                     </a>
                     <td><a href="/cliente/{{ $cliente->id }}">{{ $cliente->empresa }}</a></td>
@@ -54,8 +54,8 @@
         @endforeach
         @foreach ($clientes_cancelados as $cliente)
         <tr>
-            <td><img  style="width: 50px;" src="./../app/storage/app/app/public/clientes/cliente{{$cliente->cliente_id}}.jpeg" alt="Logo não encontrada"
-                onerror="this.src='./../app/storage/app/app/public/errors/imageNotFound.png'; this.onerror = null"></td>
+            <td><img  style="width: 50px;" src="{{ asset('storage/clientes/cliente'.$cliente->cliente_id.'.jpeg') }}" alt="Logo não encontrada"
+                onerror="this.src='{{ asset('storage/errors/imageNotFound.png') }}'; this.onerror = null"></td>
              <td>{{$cliente->empresa}}</td>
              <td>Contratos Cancelados</td>
              <td>
