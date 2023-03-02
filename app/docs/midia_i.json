@@ -1,0 +1,19 @@
+{
+    "questaoDissertativa": [
+        {
+            "questao": "Faça a analise abaixo:\n\nCaso 1: Cliente do segmento de móveis, está reclamando que as vendas seguem flats durante muito tempo. Analisando JAN x FEV, temos o cenário abaixo. Que tipo de análise e informação conseguimos extrair dos prints abaixo e qual estratégia ou pontos de atenção você traria para a reunião com ele:",
+            "imagem": [
+                "/storage/circuito-tecnico/avaliacaos/5/imagem1.png",
+                "/storage/circuito-tecnico/avaliacaos/5/imagem2.png"
+            ]
+        },
+        {
+            "questao": "Faça a analise abaixo:\n\nCaso 2: Temos um cliente do segmento de Calçados, onde estamos com um bom custo por compra em algumas campanhas e ruins em outras, porém a meta de CPA do cliente é de R$14,00.Quais informações você avalia para melhorar a performance ou, que informações você levaria para debate em uma reunião de Brainstorm com o cliente?",
+            "imagem": [
+                "/storage/circuito-tecnico/avaliacaos/5/imagem3.png",
+                "/storage/circuito-tecnico/avaliacaos/5/imagem4.png"
+            ]
+        }
+    ],
+    "alternativas": []
+}

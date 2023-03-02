@@ -1,0 +1,32 @@
+{   "questaoDissertativa":[],
+    "questoesMistas": [
+        {
+            "objetivo": "avaliar a descrita do revisor, afinal, se não souber desenvolver boas argumentações, não saberá corrigir ou sugerir novas construções para o time que usará a estrutura de revisão. Além disso, o objetivo é ter respostas completas que demonstrem interesse, confiança e detalhamento nos processos.",
+            "questoes": [
+                "Por que você espera trabalhar com revisão? Qual é o objetivo de ter textos revisados na sua perspectiva?",
+                "Qual é a sua experiência com revisão e edição de textos?",
+                "Quais tipos de conteúdo você se sente mais à vontade para revisar?",
+                "Como você identifica erros de concordância verbal e nominal?",
+                "Na sua opinião, quais são as regras gramaticais mais importantes para se lembrar?",
+                "Onde você pesquisa e valida as correções que precisam ser feitas?",
+                "Cite 5 erros gramaticais que você acredita serem os mais comuns.",
+                "Qual é o seu conhecimento sobre redação otimizada para SEO atualmente?",
+                "Caso tenha conhecimento básico em regras de construção de textos para SEO, sinalize pelo menos três práticas importantes para a construção de textos otimizados.",
+                "Ao receber um material que precisa de revisão, qual seria o seu processo para correção? Inclua informações que ajudem a gente a entender sobre os processos de leitura, validação de informações, sinalização dos erros e visualização da correção na versão final."
+            ]
+        },
+        {
+            "objetivo": "avaliar a capacidade técnica de revisar textos com erros de forma correta. Se possível, colocaria um timer de até 6 minutos para cada desafio de correção.\n\n 1. Corrija as seguintes sentenças para que fiquem claras, corretas e coesas. Fique a vontade para mudar o que julgar necessário: ",
+            "questoes": [
+                "Em entrevista com a CyberFithô, uma empresa do ramo de saúde médica, observamos os dados de pesquisa sobre o uso de medicações naturais. A pesquisa vinculada pela empresa concluiu que a maioria dos consumidores consumia remédios sem indicações de especialistas. Além disso, 5% da entrevista não tinha o hábido de tratarem-se com fisioterápicos. ",
+                "É importante estar atento no momento de fazer revisões. A busca por uma metodologia nessa prática é importante para evitar erros que passem desapercebidos pelo olhar do revisor. ",
+                "Adora frutos do mar? Pois saiba que existem muitas opções para incrementar as suas receitas e tornar a mesa ainda mais atrativa, gourmet. O Empório Vivenda Camarão oferece muitas variedades, desde camarão, bacalhau, salmão premium e muito mais.",
+                "Ana foi ao mercado para comprar frutas, legumes, carne e temperos. ",
+                "Certa vez, havia um cão que vivia em uma pequena aldeia. O cão sentia-se muito sozinho e decidiu sair em busca de um amigo. Ele correu para a floresta próxima e encontrou um coelho. O coelho estava muito assustado pois jamais tinha visto um cão antes. O cão disse ao coelho: 'Eu não quero te machuca, eu apenas quero alguém com quem puder brincar'",
+                "Segundo pesquisas vinculadas pelo IBGE, é comum que crianças com menos de 4 anos tenham alergias ainda nos primeiros anos de vida.",
+                "Enfim, neste artigo, abordamos um pouco mais sobre os pratos prontos de frutos-do-mar comercializados pelo Vivenda Camarão: todos ficam prontos em menos de 10 minutos e são uma ótima saída para os dias que estiver com pouco tempo ou querer mais praticidade. Depois que provar a primeira vez, não quer mais parar."
+            ]
+        }
+    ],
+    "alternativas": []
+}

@@ -1,0 +1,53 @@
+{
+    "questaoDissertativa": null,
+    "alternativas": [
+        {
+            "questao": "Se o faturamento do meu e-commerce cresceu 28% em compara\u00e7\u00e3o com o ano anterior, podemos dizer que:",
+            "alternativa": [
+                "a) Meu faturamento passou de R$243.000,00 para R$ 311.000,00",
+                "b) Meu faturamento passou de R$243.000,00 para R$ 302.012,00",
+                "c) Meu faturamento passou de R$243.000,00 para R$ 311.040,00",
+                "d) Meu faturamento passou de R$243.000,00 para R$ 337.500,00"
+            ],
+            "alternativa_correta": [
+                "2"
+            ]
+        },
+        {
+            "questao": "Um cliente solicita que a verba mensal seja dividida em 3 faixas, sendo 50% do dia 1 ao dia 20, 20% do dia 21 ao dia 24 e 30% do dia 25 ao dia 30 \n I) Considerando o valor total de investimento mensal de R$ 24.312,40 responda qual \u00e9 o valor correspondente ao investimento direcionado para cada per\u00edodo",
+            "alternativa": [
+                "a) de 1 a 20 R$ 12.156,20 | de 21 a 24 R$ 4.862,48 | de 25 a 30 R$ 7.293,72",
+                "b) de 1 a 20 R$ 14.587,44 | de 21 a 24 R$ 4.862,48 | de 25 a 30 R$ 4.862,48",
+                "c) de 1 a 20 R$ 9.724,96 | de 21 a 24 R$ 9.724,96 | de 25 a 30 R$ 4.862,48",
+                "d) de 1 a 20 R$ 12.156,2 | de 21 a 24 R$ 7.293,72 | de 25 a 30 R$ 7.293,72"
+            ],
+            "alternativa_correta": [
+                "0"
+            ]
+        },
+        {
+            "questao": "Considerando a quest\u00e3o anterior:\nII) Qual ser\u00e1 o valor di\u00e1rio de cada per\u00edodo",
+            "alternativa": [
+                "a) de 1 a 20 R$ 2.431,24 | de 21 a 24 R$ 1.215,62 | de 25 a 30 R$ 243,12",
+                "b) de 1 a 20 R$ 767,76 | de 21 a 24 R$ 810,41 | de 25 a 30 R$ 1.620,82",
+                "c) de 1 a 20 R$ 694,64 | de 21 a 24 R$ 810,41 | de 25 a 30 R$ 607,81",
+                "d) de 1 a 20 R$ 607,81 | de 21 a 24 R$ 1.215,62 | de 25 a 30 R$ 1.215,62"
+            ],
+            "alternativa_correta": [
+                "3"
+            ]
+        },
+        {
+            "questao": "O total de vendas do meu e-commerce aumentou de R$ 212.315,00 para R$ 331.412,22 de fevereiro para mar\u00e7o e reduziu de R$ 331.412,22 para R$ 262.444.21 de mar\u00e7o para abril. Olhando para estes n\u00fameros, podemos dizer que:",
+            "alternativa": [
+                "a) Minhas vendas aumentaram 60,02% no comparativo MAR x FEV e regrediu em -30,80% no comparativo ABR x MAR.",
+                "b) Minhas vendas aumentaram 56,09% no comparativo MAR x FEV e regrediu em -20,81% no comparativo ABR x MAR.",
+                "c) Minhas vendas aumentaram 50% no comparativo MAR x FEV e regrediu em -12% no comparativo ABR x MAR.",
+                "d) Minhas vendas aumentaram 25,67% no comparativo MAR x FEV e regrediu em -12,92% no comparativo ABR x MAR."
+            ],
+            "alternativa_correta": [
+                "1"
+            ]
+        }
+    ]
+}

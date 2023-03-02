@@ -1,0 +1,171 @@
+{
+    "questaoDissertativa": [
+        "Em um novo projeto de otimização, qual a tarefa que você considera que deve ser realizada primeiro? O que deve ser verificado?",
+        "Suponha que você recebeu um caso de um site em que as visitas caíram pelo menos 50% nos últimos dois meses. Quais passos você tomaria para averiguar a real causa do problema?"
+    ],
+    "alternativas": [
+        {
+            "questao": "O tamanho máximo da Title de um site apresentado pelo Google é:",
+            "alternativa": [
+                "a) 155 caracteres",
+                "b) 580 pixels",
+                "c) 44 caracteres",
+                "d) 512 pixels"
+            ],
+            "alternativa_correta": [
+                "1"
+            ]
+        },
+        {
+            "questao": "Como as meta-descriptions podem ajudar no trabalho de SEO?",
+            "alternativa": [
+                "a) Elas são um fator importante de ranqueamento",
+                "b) Elas ajudam a indicar aos motores de busca as principais palavras-chaves da página",
+                "c) Elas servem para informar do que se trata aquela página, fazendo com que o usuário clique no resultado",
+                "d) Meta descriptions não são importantes para SEO"
+            ],
+            "alternativa_correta": [
+                "2"
+            ]
+        },
+        {
+            "questao": "No seguinte bloco de HTML na imagem abaixo, o que o Google levaria em consideração como texto âncora?",
+            "imagem": "/storage/circuito-tecnico/avaliacaos/4/questao-5.png" , 
+            "alternativa": [
+                "a) http://www.yooper.com.br",
+                "b) SEO",
+                "c) Agência",
+                "d) Marketing"
+            ],
+            "alternativa_correta": [
+                "2"
+            ]
+        },
+        {
+            "questao": "Na seguinte URL http://loja.exemplo.com/categoria/palavra-chave?id=123#top 'loja' representa o ____ e 'com' é ________",
+            "alternativa": [
+                "a) Subdiretório, Subdomínio",
+                "b) Subdomínio, Top-Level Domain (TLD)",
+                "c) Página, Subdiretório",
+                "d) Domínio, Subdomínio"
+            ],
+            "alternativa_correta": [
+                "1"
+            ]
+        },
+        {
+            "questao": "Qual código de Status HTTP devemos usar para indicar para o Google que o site encontra-se em manutenção?",
+            "alternativa": [
+                "a) 404",
+                "b) 200",
+                "c) 503",
+                "d) 302"
+            ],
+            "alternativa_correta": [
+                "2"
+            ]
+        },
+        {
+            "questao": "Você possui uma página que você não quer que seja indexada, mas deseja passar relevância nos links presentes nelas. Qual das seguintes tags você incluiria no header para esta finalidade?",
+            "alternativa": [
+                "a) NOINDEX, NOFOLLOW",
+                "b) NORANKING, NOINDEX",
+                "c) NOINDEX, FOLLOW",
+                "d) INDEX, NOFOLLOW"
+            ],
+            "alternativa_correta": [
+                "2"
+            ]
+        },
+        {
+            "questao": "Implementar Dados Estruturados ajuda a:",
+            "alternativa": [
+                "a) Levar a criação de rich snippets nos resultados de pesquisa",
+                "b) Melhorar o CTR da página",
+                "c) Definir o conteúdo da página para os motores de busca",
+                "d) Todas as opções anteriores"
+            ],
+            "alternativa_correta": [
+                "3"
+            ]
+        },
+        {
+            "questao": "Quando uma imagem é usada como link, os motores de busca usam o atributo alt como texto âncora.",
+            "alternativa": [
+                "a) Verdadeiro",
+                "b) Falso"
+            ],
+            "alternativa_correta": [
+                "0"
+            ]
+        },
+        {
+            "questao": "Qual a melhor forma de lidar com possíveis URLs com conteúdo duplicado dentro do mesmo site?",
+            "alternativa": [
+                "a) NoIndex",
+                "b) Canonical",
+                "c) NoFollow",
+                "d) Disallow"
+            ],
+            "alternativa_correta": [
+                "1"
+            ]
+        },
+        {
+            "questao": "Qual das alternativas a seguir seria a melhor escolha para a estrutura de URLs (tanto para os motores de busca, quanto para os usuários)?",
+            "alternativa": [
+                "a) www.loja.com.br/categoria/277/produto/563",
+                "b) www.loja.com.br/categoria/carrinhos",
+                "c) www.loja.com.br/O0665?id=563&cat=277",
+                "d) www.loja.com.br/brinquedos/carrinhos"
+            ],
+            "alternativa_correta": [
+                "3"
+            ]
+        },
+        {
+            "questao": "Qual código de resposta do servidor HTTP indica uma página que foi permanentemente realocada e todos os links para a página antiga passarão sua influência para o novo local da página?",
+            "alternativa": [
+                "a) 301",
+                "b) 404",
+                "c) 302",
+                "d) 500"
+            ],
+            "alternativa_correta": [
+                "0"
+            ]
+        },
+        {
+            "questao": "Links de alta qualidade para a home page de um site podem ajudar a melhorar o ranking de páginas mais profundas no mesmo domínio.",
+            "alternativa": [
+                "a) Verdadeiro",
+                "b) Falso"
+            ],
+            "alternativa_correta": [
+                "0"
+            ]
+        },
+        {
+            "questao": "No geral, os links internos passam aproximadamente o mesmo valor que os links externos (backlinks).",
+            "alternativa": [
+                "a) Verdadeiro",
+                "b) Falso"
+            ],
+            "alternativa_correta": [
+                "1"
+            ]
+        },
+        {
+            "questao": "Sobre backlinks é incorreto afirmar que:",
+            "alternativa": [
+                "a) Uma alta quantidade de links pode ajudar a performance de SEO de um domínio",
+                "b) Acompanhar a qualidade e quantidade de spams dos domínios que apontam link para o determinado site é importante para evitar penalizações do Google",
+                "c) Fóruns e diretórios são boas oportunidades para conquista de links",
+                "d) O tema, relevância e autoridade de domínio são fatores que podem impactar a qualidade dos links recebidos"
+            ],
+            "alternativa_correta": [
+                "2"
+            ]
+        }
+    ]
+}
