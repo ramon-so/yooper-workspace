@@ -16,6 +16,7 @@ use App\Repositories\ClientesRepository;
 use App\Services\ContratosService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Routing\UrlGenerator;
 
 class GestaoClientesController extends Controller
 {
@@ -36,7 +37,7 @@ class GestaoClientesController extends Controller
         return view('layouts.gestao.relatorio-net', compact('infos_func'));
     }
 
-    public function cliente_view(FuncionarioInfo $funcionarioInfo, int $id, Request $request)
+    public function cliente_view(FuncionarioInfo $funcionarioInfo, int $id, Request $request, UrlGenerator $urlGenerator)
     {
         $infos_func = $funcionarioInfo->funcionario_informacoes(Auth::user()->id);
 
@@ -134,7 +135,9 @@ class GestaoClientesController extends Controller
             ->where('clientes.id', "$id")
             ->get();
 
-        return view('layouts.gestao.cliente', compact('infos_func', 'cliente', 'contratos_ativos', 'sub_contratos_ativos', 'feeTotal', 'servico'));
+        $url = $urlGenerator->to('/');
+
+        return view('layouts.gestao.cliente', compact('infos_func', 'cliente', 'contratos_ativos', 'sub_contratos_ativos', 'feeTotal', 'servico', 'url'));
     }
 
     public function contratos_view(FuncionarioInfo $funcionarioInfo, ListarClientes $clientes, ListarServicos $servicos, Request $request)
