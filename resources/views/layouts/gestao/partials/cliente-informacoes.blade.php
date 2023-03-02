@@ -4,7 +4,7 @@
             type="button"><i class="fa-solid fa-pen-to-square"></i></button>
         <a href="#">
             {{dd(asset('storage/clientes/cliente'.$cliente->id.'.jpeg'))}}
-            <img style="max-width: 100px" src="{{ asset('storage/clientes/cliente'.$cliente->id.'.jpeg') }}"
+            <img style="max-width: 100px" src="/storage/clientes/cliente{{$cliente->id}}.jpeg"
                 class="rounded-circle user-foto-perfil mt-4" alt="Logo não encontrada"
                 onerror="this.src='{{ asset('storage/errors/imageNotFound.png') }}'; this.onerror = null"
 
