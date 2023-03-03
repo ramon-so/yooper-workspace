@@ -23,7 +23,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link type="text/css" href="{{ asset('assets') }}/css/argon.css?v=1.0.0" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets') }}/css/slick.css" rel="stylesheet">
-    <link type="text/css" href="{{ asset('assets') }}/css/style.css" rel="stylesheet">
+    <link type="text/css" href="{{ asset() }}assets/css/style.css" rel="stylesheet">
     <script src="{{ asset('assets') }}/js/jquery/jquery.min.js"></script>
     <script src="{{ asset('assets') }}/js/jquery-easing/jquery.easing.min.js"></script>
     <script src="{{ asset('assets') }}/js/jquery.mask.js"></script>
