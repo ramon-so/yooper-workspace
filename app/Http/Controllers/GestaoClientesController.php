@@ -1266,6 +1266,11 @@ class GestaoClientesController extends Controller
 
         return view('layouts.gestao.clientes-classificacoes', compact('infos_func', 'lista_clientes'));
     }
+
+    public function contrato_assinados(Request $request){
+        $result = DB::insert("INSERT INTO contrato_assinados (cliente_id, data_assinatura, observacao) VALUES ('$request->cliente_id', '$request->data_assinatura', '$request->observacao')");
+        return redirect()->back();
+    }
     
 
 }

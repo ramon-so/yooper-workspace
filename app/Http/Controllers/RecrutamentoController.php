@@ -639,7 +639,7 @@ class RecrutamentoController extends Controller
         }
     }
 
-    public function perfil_candidato(ListarStatusProcesso $listarStatusProcesso, ListarCaptacoes $listarCaptacoes, FuncionarioInfo $funcionarioInfo, int $processo_id, int $id)
+    public function perfil_candidato(ListarStatusProcesso $listarStatusProcesso, ListarCaptacoes $listarCaptacoes, FuncionarioInfo $funcionarioInfo, $processo_id, $id)
     {
         $infos_func = $funcionarioInfo->funcionario_informacoes(Auth::user()->id);
         // Busca o candidato

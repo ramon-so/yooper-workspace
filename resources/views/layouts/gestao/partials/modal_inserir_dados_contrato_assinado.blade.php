@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form id="form-inserir-dados" action="{{ route('contrato_assinados.store') }}" method="POST">
+        <form id="form-inserir-dados" action="{{ route('contrato_assinados') }}" method="POST">
           {{ csrf_field() }}
           <div class="modal-body">
             <div class="form-group">

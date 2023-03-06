@@ -121,6 +121,7 @@ Route::middleware('Head')->group(function () {
 	Route::get('/relatorio-net', 'GestaoClientesController@relatorio_net_view')->name('relatorio_net');
 	Route::get('/clientes-classificacoes', 'GestaoClientesController@classificacoes_view')->name('clientes_classificacoes');
 	Route::get('/net-contratos', 'GestaoClientesController@contratos_view')->name('contratos_view');
+	Route::get('/contrato_assinados', 'GestaoClientesController@contrato_assinados')->name('contrato_assinados');
 });
 
 Route::middleware('RH')->group(function () {

@@ -10,7 +10,7 @@
             </div>
             <div class="card-body bg-secondary" style="height: 100%;">
             @if (!$candidato->curriculo == "")
-                <iframe src='{{ "./storage/$candidato->curriculo" }}' class="col-12"
+                <iframe src='{{ asset('storage').$candidato->curriculo }}' class="col-12"
                     style="height: 100%;"></iframe>
             @else
                 <p class="h3 text-center m-auto">Candidato sem currículo cadastrado</p>

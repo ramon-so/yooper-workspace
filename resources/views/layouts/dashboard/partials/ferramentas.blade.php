@@ -23,11 +23,11 @@
             <h2>Formulários Operação</h2>
         </div>
         <div class="ferramentas-box">
-            <a href="https://wkf.ms/3DiTONK" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Solicitação Criação"><i class="fa-solid fa-palette"></i></a>
+            <a href="https://forms.monday.com/forms/4d78e14a7d5f4f9e154bdae9b1230914?r=use1" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Solicitação Criação"><i class="fa-solid fa-palette"></i></a>
             
             
 
-            <a href="https://yooper.com.br/dev.html" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Solicitação Web Analytics e Acessos"><i
+            <a href="{{$infos_func[0]->departamento_form}}" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Solicitação Web Analytics e Acessos"><i
                     class="fa-solid fa-key"></i></a>
         </div>
         <div class="ferramentas-titulo">
