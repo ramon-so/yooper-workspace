@@ -75,7 +75,7 @@ class UsuariosController extends Controller
                 $usuario_search->foto_usuario = "usuario$usuario->id.jpeg";
                 $usuario_search->save();
                 $usuario->update([
-                'foto_usuario' => $request->foto_usuario->storeAs('usuarios', "usuario" . $usuario->id . ".jpeg"),
+                'foto_usuario' => $request->foto_usuario->storeAs('usuarios', "usuario" . $usuario->id . ".jpeg", ['disk' => 'public']),
         ]);
 
             return redirect('/cadastrar-usuarios')->with('msg', 'Usuário cadastrado com sucesso!');;
@@ -140,7 +140,7 @@ class UsuariosController extends Controller
                     'senha' => $request->senha,
                     'foto_usuario' => "usuario$usuarios->id.jpeg",
                 ]);
-                $request->foto_usuario->storeAs('usuarios', "usuario" . $usuarios->id . ".jpeg");
+                $request->foto_usuario->storeAs('usuarios', "usuario" . $usuarios->id . ".jpeg", ['disk' => 'public']);
             }
             return redirect('/sair')->with('msg', 'Dados alterados com sucesso!');
         }

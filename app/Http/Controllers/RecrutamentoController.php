@@ -517,7 +517,7 @@ class RecrutamentoController extends Controller
 
                 $curriculo = Candidatos::find($candidatos->id);
                 $curriculo->update([
-                    'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $candidatos->id . ".pdf"),
+                    'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $candidatos->id . ".pdf", ['disk' => 'public']),
                 ]);
 
 
@@ -563,7 +563,7 @@ class RecrutamentoController extends Controller
                 'email' => $request->email,
                 'telefone' => $request->telefone,
                 'linkedin_link' => $request->linkedin_link,
-                'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $id . ".pdf"),
+                'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $id . ".pdf", ['disk' => 'public']),
                 'user_id' => $request->user_id,
                 'captacao_id' => $request->captacao_id,
             ]);
@@ -823,7 +823,7 @@ class RecrutamentoController extends Controller
                 'email' => $request->email,
                 'telefone' => $request->telefone,
                 'linkedin_link' => $request->linkedin_link,
-                'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $id . ".pdf"),
+                'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $id . ".pdf", ['disk' => 'public']),
                 'user_id' => $request->user_id,
                 'captacao_id' => $request->captacao_id,
             ]);
@@ -852,7 +852,7 @@ class RecrutamentoController extends Controller
                 'email' => $request->email,
                 'telefone' => $request->telefone,
                 'linkedin_link' => $request->linkedin_link,
-                'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $id . ".pdf"),
+                'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $id . ".pdf", ['disk' => 'public']),
                 'user_id' => $request->user_id,
                 'captacao_id' => $request->captacao_id,
             ]);
@@ -907,7 +907,7 @@ class RecrutamentoController extends Controller
                 'email' => $request->email,
                 'telefone' => $request->telefone,
                 'linkedin_link' => $request->linkedin_link,
-                'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $id . ".pdf"),
+                'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $id . ".pdf", ['disk' => 'public']),
                 'captacao_id' => $request->captacao_id,
             ]);
         }
@@ -955,7 +955,7 @@ class RecrutamentoController extends Controller
 
                 $curriculo = Candidatos::find($candidatos->id);
                 $curriculo->update([
-                    'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $candidatos->id . ".pdf"),
+                    'curriculo_anexo' => $request->curriculo_anexo->storeAs('candidato', "candidato" . $candidatos->id . ".pdf", ['disk' => 'public']),
                 ]);
             }
             return redirect("/banco-de-candidatos")->with('msg', 'Candidato cadastrado com sucesso!');
