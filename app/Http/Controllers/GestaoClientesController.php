@@ -1248,7 +1248,7 @@ class GestaoClientesController extends Controller
         SUM(c2.fee) AS fee  FROM clientes c 
         LEFT JOIN cliente_classificacoes cc ON c.id = cc.cliente_id 
         LEFT JOIN contratos c2 ON c2.cliente_id = c.id 
-        WHERE c2.data_ultimo_dia IS NOT NULL OR c2.data_ultimo_dia < NOW()
+        WHERE (c2.data_ultimo_dia IS NULL OR c2.data_ultimo_dia > NOW()) AND c.empresa != '' AND fee IS NOT NULL AND fee > 0
         GROUP BY c.empresa, cc.volume, cc.updated_at");
 
         foreach ($lista_clientes AS $cliente){
@@ -1279,7 +1279,7 @@ class GestaoClientesController extends Controller
         SUM(c2.fee) AS fee  FROM clientes c 
         LEFT JOIN cliente_classificacoes cc ON c.id = cc.cliente_id 
         LEFT JOIN contratos c2 ON c2.cliente_id = c.id 
-        WHERE c2.data_ultimo_dia IS NOT NULL OR c2.data_ultimo_dia < NOW()
+        WHERE (c2.data_ultimo_dia IS NULL OR c2.data_ultimo_dia > NOW()) AND c.empresa != '' AND fee IS NOT NULL AND fee > 0
         GROUP BY c.id, cc.volume, cc.updated_at ORDER BY c.empresa ASC");
 
         for($i = 0; $i < count($request->volumes); $i++){
