@@ -24,7 +24,14 @@
             if (censor && meta.col == 2) {
                 return "R$ ******";
             } else {
-                return "R$ "+data+",00";
+                let conteudo = data.toString();
+                if(conteudo.includes(".")){
+                    conteudo = conteudo.replace(".", ",");
+                    return "R$ "+conteudo
+                }else{
+                    return "R$ "+data+",00";
+                }
+                
             }
         }
 

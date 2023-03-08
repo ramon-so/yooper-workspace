@@ -1245,7 +1245,7 @@ class GestaoClientesController extends Controller
         $lista_clientes = DB::SELECT("SELECT c.empresa AS cliente, 
         IFNULL(cc.volume, '0') AS volume, 
         IFNULL(cc.updated_at , 'Sem dados') AS updated_at, 
-        SUM(c2.fee) AS fee  FROM clientes c 
+        ROUND(SUM(c2.fee), 2) AS fee  FROM clientes c 
         LEFT JOIN cliente_classificacoes cc ON c.id = cc.cliente_id 
         LEFT JOIN contratos c2 ON c2.cliente_id = c.id 
         WHERE (c2.data_ultimo_dia IS NULL OR c2.data_ultimo_dia > NOW()) AND c.empresa != '' AND fee IS NOT NULL AND fee > 0
@@ -1276,7 +1276,7 @@ class GestaoClientesController extends Controller
         $lista_clientes = DB::SELECT("SELECT c.id AS cliente_id, 
         IFNULL(cc.volume, '0') AS volume, 
         IFNULL(cc.updated_at , 'Sem dados') AS updated_at, 
-        SUM(c2.fee) AS fee  FROM clientes c 
+        ROUND(SUM(c2.fee), 2) AS fee  FROM clientes c 
         LEFT JOIN cliente_classificacoes cc ON c.id = cc.cliente_id 
         LEFT JOIN contratos c2 ON c2.cliente_id = c.id 
         WHERE (c2.data_ultimo_dia IS NULL OR c2.data_ultimo_dia > NOW()) AND c.empresa != '' AND fee IS NOT NULL AND fee > 0
