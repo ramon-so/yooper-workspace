@@ -14,7 +14,7 @@
     <ul class="sub-menu" id="sub-menu-clientes-contratos">
         <li><a href="/net-contratos">NET Contratos</a></li>
         <li><a href="/clientes-ativos">Clientes ativos</a></li>
-        <li><a href="/carteiras">Clientes Classificações</a></li>
+        <li><a href="/clientes-classificacoes">Clientes Classificação</a></li>
         <li><a href="/carteiras">Carteiras</a></li>
     </ul>
 </li>
