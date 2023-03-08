@@ -17,6 +17,7 @@ use App\Services\ContratosService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\UrlGenerator;
+use App\Models\ClientesClassificacoes;
 
 class GestaoClientesController extends Controller
 {
@@ -1241,14 +1242,14 @@ class GestaoClientesController extends Controller
     public function classificacoes_view(FuncionarioInfo $funcionarioInfo){
         $infos_func = $funcionarioInfo->funcionario_informacoes(Auth::user()->id);
 
-        $lista_clientes = DB::SELECT("SELECT c.razaosocial AS cliente, 
+        $lista_clientes = DB::SELECT("SELECT c.empresa AS cliente, 
         IFNULL(cc.volume, '0') AS volume, 
         IFNULL(cc.updated_at , 'Sem dados') AS updated_at, 
         SUM(c2.fee) AS fee  FROM clientes c 
         LEFT JOIN cliente_classificacoes cc ON c.id = cc.cliente_id 
         LEFT JOIN contratos c2 ON c2.cliente_id = c.id 
         WHERE c2.data_ultimo_dia IS NOT NULL OR c2.data_ultimo_dia < NOW()
-        GROUP BY c.razaosocial, cc.volume, cc.updated_at");
+        GROUP BY c.empresa, cc.volume, cc.updated_at");
 
         foreach ($lista_clientes AS $cliente){
             if(($cliente->volume >= 0 && $cliente->volume < 184000) || ($cliente->fee >= 1000 && $cliente->fee < 30000)){
@@ -1269,6 +1270,7 @@ class GestaoClientesController extends Controller
 
     public function atualizar_classificacoes(Request $request){
 
+        $clienteClassificacoes = new ClientesClassificacoes();
         
 
         $lista_clientes = DB::SELECT("SELECT c.id AS cliente_id, 
@@ -1278,12 +1280,16 @@ class GestaoClientesController extends Controller
         LEFT JOIN cliente_classificacoes cc ON c.id = cc.cliente_id 
         LEFT JOIN contratos c2 ON c2.cliente_id = c.id 
         WHERE c2.data_ultimo_dia IS NOT NULL OR c2.data_ultimo_dia < NOW()
-        GROUP BY c.id, cc.volume, cc.updated_at");
+        GROUP BY c.id, cc.volume, cc.updated_at ORDER BY c.empresa ASC");
 
         for($i = 0; $i < count($request->volumes); $i++){
             $volume = $request->volumes[$i];
             $id = $lista_clientes[$i]->cliente_id;
-            DB::update("UPDATE cliente_classificacoes SET volume = '$volume' WHERE cliente_classificacoes.cliente_id = '$id'");
+            $clienteClassificacoes = ClientesClassificacoes::updateOrCreate(
+                ['cliente_id' => $id],
+                ['volume' => $volume, 'cliente_id' => $id]
+            );
+            // DB::update("UPDATE cliente_classificacoes SET volume = '$volume' WHERE cliente_classificacoes.cliente_id = '$id'");
         }
 
         return redirect()->back();

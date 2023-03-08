@@ -24,7 +24,7 @@
             if (censor && meta.col == 2) {
                 return "R$ ******";
             } else {
-                return data;
+                return "R$ "+data;
             }
         }
 

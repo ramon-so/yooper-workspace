@@ -16,7 +16,7 @@ class AutenticadorHeads
      */
     public function handle($request, Closure $next){
         if(Auth::check()){
-            if (Auth::user()->acesso == 'Head' || Auth::user()->acesso == 'Master' || Auth::user()->acesso == 'Master-RH'){
+            if (Auth::user()->acesso == 'Head' || Auth::user()->acesso == 'Master' || Auth::user()->acesso == 'Master-RH' || Auth::user()->acesso == 'Financeiro'){
                 return $next($request);
             }else{
    
