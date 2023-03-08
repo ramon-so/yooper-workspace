@@ -74,8 +74,9 @@ class UsuariosController extends Controller
                 $usuario_search= Usuario::find($usuario->id);
                 $usuario_search->foto_usuario = "usuario$usuario->id.jpeg";
                 $usuario_search->save();
+                $path = $request->foto_usuario->storeAs('usuarios', "usuario" . $usuario->id . ".jpeg", ['disk' => 'public']);
                 $usuario->update([
-                'foto_usuario' => $request->foto_usuario->storeAs('usuarios', "usuario" . $usuario->id . ".jpeg", ['disk' => 'public']),
+                'foto_usuario' => "usuario".$usuario->id.".jpeg",
         ]);
 
             return redirect('/cadastrar-usuarios')->with('msg', 'Usuário cadastrado com sucesso!');;

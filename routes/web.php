@@ -122,6 +122,7 @@ Route::middleware('Head')->group(function () {
 	Route::get('/clientes-classificacoes', 'GestaoClientesController@classificacoes_view')->name('clientes_classificacoes');
 	Route::get('/net-contratos', 'GestaoClientesController@contratos_view')->name('contratos_view');
 	Route::get('/contrato_assinados', 'GestaoClientesController@contrato_assinados')->name('contrato_assinados');
+	Route::get('/atualizar-classificacoes', 'GestaoClientesController@atualizar_classificacoes')->name('atualizar_classificacoes');
 });
 
 Route::middleware('RH')->group(function () {

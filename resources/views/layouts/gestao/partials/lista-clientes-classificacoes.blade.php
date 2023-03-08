@@ -13,6 +13,7 @@
     <tbody class="list">
     </tbody>
 </table>
+<button class="btn btn-success" type="submit" style="float: right; margin-bottom: 10px;">Salvar</button>
 <script>
     $(document).ready(function() {
         var censor = true;
@@ -27,44 +28,39 @@
             }
         }
 
+        function customRenderVolume(data, type, row, meta) {
+            if (meta.col == 1) {
+                return '<input type="text" name="volumes[]" class="form-control" value="' + data + '">';
+            } else {
+                return data;
+            }
+        }
+
         $('#dataTable').DataTable({
             data: data,
             columns: [
                 { data: 'cliente' },
-                { data: 'volume'},
+                { data: 'volume', render: customRenderVolume},
                 { data: 'fee', render: customRender },
                 { data: 'classificacao' },
                 { data: 'updated_at' }
             ]
-        });
+            });
 
-        // $('#dataTable').DataTable({
-        //     "language": {
-        //         "lengthMenu": "Mostrar _MENU_ contratos por página",
-        //         "zeroRecords": "Nenhum resultado encontrado",
-        //         "info": "Mostrando página _PAGE_ de _PAGES_",
-        //         "infoEmpty": "Nenhum resultado encontrado",
-        //         "infoFiltered": "(Filtrado from _MAX_ total de contratos)",
-        //         "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
-        //     },
-        //     "paging": true,
-        //     "bSort": true,
-        //     'pagingType': 'full',
-        // });
         $('#btnMostrarCensurados').click(function() {
             censor = !censor; // inverte o valor da variável "censor"
             // redefine a função de renderização com o novo valor de "censor"
             $("#dataTable").dataTable().fnDestroy();
             $('#dataTable').DataTable({
-            data: data,
-            columns: [
-                { data: 'cliente' },
-                { data: 'volume'},
-                { data: 'fee', render: customRender },
-                { data: 'classificacao' },
-                { data: 'updated_at' }
-            ]
-        });
+                data: data,
+                columns: [
+                    { data: 'cliente' },
+                    { data: 'volume', render: customRenderVolume},
+                    { data: 'fee', render: customRender },
+                    { data: 'classificacao' },
+                    { data: 'updated_at' }
+                ]
+            });
         });
     });
 </script>

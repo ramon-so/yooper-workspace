@@ -12,7 +12,10 @@
         <div class="main-content animate__animated animate__fadeIn animate__slow">
             <div class="container-fluid">
                 @include('layouts.template-partials.alerts')
-                @include('layouts.gestao.partials.lista-clientes-classificacoes')
+                <form action="/atualizar-classificacoes">
+                    @include('layouts.gestao.partials.lista-clientes-classificacoes')
+                </form>
+                
             </div>
         </div>    
     @endsection

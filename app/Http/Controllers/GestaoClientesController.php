@@ -1267,6 +1267,28 @@ class GestaoClientesController extends Controller
         return view('layouts.gestao.clientes-classificacoes', compact('infos_func', 'lista_clientes'));
     }
 
+    public function atualizar_classificacoes(Request $request){
+
+        
+
+        $lista_clientes = DB::SELECT("SELECT c.id AS cliente_id, 
+        IFNULL(cc.volume, '0') AS volume, 
+        IFNULL(cc.updated_at , 'Sem dados') AS updated_at, 
+        SUM(c2.fee) AS fee  FROM clientes c 
+        LEFT JOIN cliente_classificacoes cc ON c.id = cc.cliente_id 
+        LEFT JOIN contratos c2 ON c2.cliente_id = c.id 
+        WHERE c2.data_ultimo_dia IS NOT NULL OR c2.data_ultimo_dia < NOW()
+        GROUP BY c.id, cc.volume, cc.updated_at");
+
+        for($i = 0; $i < count($request->volumes); $i++){
+            $volume = $request->volumes[$i];
+            $id = $lista_clientes[$i]->cliente_id;
+            DB::update("UPDATE cliente_classificacoes SET volume = '$volume' WHERE cliente_classificacoes.cliente_id = '$id'");
+        }
+
+        return redirect()->back();
+    }
+
     public function contrato_assinados(Request $request){
         $result = DB::insert("INSERT INTO contrato_assinados (cliente_id, data_assinatura, observacao) VALUES ('$request->cliente_id', '$request->data_assinatura', '$request->observacao')");
         return redirect()->back();
