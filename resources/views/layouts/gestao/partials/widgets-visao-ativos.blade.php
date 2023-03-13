@@ -18,7 +18,6 @@
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase text-muted mb-0 title-widgets">Primeiro mês</h5>
-                                <span class="h2 font-weight-bold mb-0">{{count($primeiro_mes) + $alocados_primeiro_mes}}</span>
                             </div>
                             <div class="col-auto">
                                 <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -35,7 +34,6 @@
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase text-muted mb-0 title-widgets">Ultimo mês </h5>
-                                <span class="h2 font-weight-bold mb-0">{{count($ultimo_mes) + $alocados_ultimo_mes}}</span>
                             </div>
                             <div class="col-auto">
                                 <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -52,7 +50,6 @@
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase text-muted mb-0 title-widgets">Ativos recorrentes</h5>
-                                <span class="h2 font-weight-bold mb-0">{{count($ativos_recorrentes) + $alocados_ativos_recorrentes}}</span>
                             </div>
                             <div class="col-auto">
                                 <div class="icon icon-shape bg-success text-white rounded-circle shadow">
@@ -69,7 +66,6 @@
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase text-muted mb-0 title-widgets">Pendentes</h5>
-                                <span class="h2 font-weight-bold mb-0">{{count($pendentes) + $alocados_pendentes}}</span>
                             </div>
                             <div class="col-auto">
                                 <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -86,7 +82,6 @@
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase text-muted mb-0 title-widgets">Total</h5>
-                                <span class="h2 font-weight-bold mb-0">{{$total}}</span>
                             </div>
                             <div class="col-auto">
                                 <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -132,7 +127,6 @@
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase text-muted mb-0 title-widgets">Fee total</h5>
-                                <span class="h2 hidden-fee font-weight-bold mb-0">R$ {{$fee_total}}</span>
                                 <span class="h2 display-fee font-weight-bold mb-0">R$ *******</span>
                             </div>
                             <div class="col-auto">
@@ -150,7 +144,6 @@
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase text-muted mb-0 title-widgets">Fee perdido </h5>
-                                <span class="h2 hidden-fee font-weight-bold mb-0">R$ {{$fee_perdido}}</span>
                                 <span class="h2 display-fee font-weight-bold mb-0">R$ *******</span>
                             </div>
                             <div class="col-auto">
@@ -168,7 +161,6 @@
                         <div class="row">
                             <div class="col">
                                 <h5 class="card-title text-uppercase text-muted mb-0 title-widgets">Saldo financeiro</h5>
-                                <span class="h2 hidden-fee font-weight-bold mb-0">R$ {{$saldo_financeiro}}</span>
                                 <span class="h2 display-fee font-weight-bold mb-0">R$ *******</span>
                             </div>
                             <div class="col-auto">

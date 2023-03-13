@@ -68,7 +68,8 @@ class UsuariosController extends Controller
                     'ativo' => $request->ativo,
                     'acesso' => $request->acesso,
                     'departamento_id' => $request->departamento_id,
-                    'funcionario_id' => $request->funcionario_id
+                    'funcionario_id' => $request->funcionario_id,
+                    'foto_usuario' => 'temp'
                     ]
                 );
                 $usuario_search= Usuario::find($usuario->id);

@@ -821,246 +821,87 @@ class GestaoClientesController extends Controller
     public function visao_ativos_view(FuncionarioInfo $funcionarioInfo, Request $request){
         $infos_func = $funcionarioInfo->funcionario_informacoes(Auth::user()->id);
 
-        $clientes = DB::select("SELECT c.empresa, c.id FROM clientes c ORDER BY c.empresa ASC");
-        /**
-         * MONTANDO OS WIDGETS
-         */
-
-        $dados = DB::select("SELECT * FROM contratos c");
-
-        $dados = $this->filtros_gerais_contratos_ativos($request, $dados);  
-
-        $primeiro_mes = array_filter($dados, function($dados){
-            return date('Y-m-d', strtotime($dados->data_kickoff)) >= date('Y-m-d', strtotime('-30 days'));
-          });
-        $alocados_primeiro_mes = 0;
-        foreach($primeiro_mes AS $contrato){
-            $alocados = DB::select("SELECT * FROM contratos_alocados c WHERE c.contrato_id = '$contrato->id'");
-            $alocados_primeiro_mes += count($alocados);
-        }
-
-        $ultimo_mes = array_filter($dados, function($dados){
-            return date('Y-m-d', strtotime($dados->data_ultimo_dia)) >= date('Y-m-d');
-          });
-        $alocados_ultimo_mes = 0;
-          foreach($ultimo_mes AS $contrato){
-              $alocados = DB::select("SELECT * FROM contratos_alocados c WHERE c.contrato_id = '$contrato->id'");
-              $alocados_ultimo_mes += count($alocados);
-          }
-
-        $ativos_recorrentes = array_filter($dados, function($dados){
-            return $dados->data_kickoff != NULL;
-          });
-        $ativos_recorrentes = array_filter($ativos_recorrentes, function($ativos_recorrentes){
-            return $ativos_recorrentes->data_ultimo_dia == NULL;
-          });
-        $ativos_recorrentes = array_filter($ativos_recorrentes, function($ativos_recorrentes){
-            return date('Y-m-d', strtotime($ativos_recorrentes->data_kickoff)) < date('Y-m-d', strtotime('-30 days'));
-          });
-        $alocados_ativos_recorrentes = 0;
-          foreach($ativos_recorrentes AS $contrato){
-              $alocados = DB::select("SELECT * FROM contratos_alocados c WHERE c.contrato_id = '$contrato->id'");
-              $alocados_ativos_recorrentes += count($alocados);
-          }
-
-        $pendentes = array_filter($dados, function($dados){
-            return $dados->data_kickoff == NULL;
-          });
-        $alocados_pendentes = 0;
-          foreach($pendentes AS $contrato){
-              $alocados = DB::select("SELECT * FROM contratos_alocados c WHERE c.contrato_id = '$contrato->id'");
-              $alocados_pendentes += count($alocados);
-          }
-
-        $total = count($primeiro_mes) + count($ultimo_mes) + count($ativos_recorrentes) + count($pendentes) + $alocados_primeiro_mes +
-                $alocados_ultimo_mes + $alocados_ativos_recorrentes + $alocados_pendentes;
-        /**
-         * ------------------------------------------------------------------------
-         */
-
+        // $clientes = DB::select("SELECT c.empresa, c.id FROM clientes c ORDER BY c.empresa ASC");
 
         /**
-         * MONTANDO AS TABELAS
+         * Busca dos dados para tratamento
          */
+        $dados = DB::select('
+        SELECT 
+        c.id AS cliente_id, c.empresa, c.projetos,
+        c2.id AS contrato_id, c2.data_kickoff, c2.fee, c2.data_solicitacao_cancelamento, c2.data_ultimo_dia, 
+        s.nome AS servico,
+        sc.nome AS contrato_alocado
+        FROM clientes c 
+        LEFT JOIN contratos c2 ON c2.cliente_id = c.id 
+        LEFT JOIN contratos_alocados ca ON ca.contrato_id = c2.id
+        LEFT JOIN sub_contratos sc ON ca.subcontrato_id = sc.id
+        LEFT JOIN servicos s ON c2.servico_id = s.id
+        WHERE c2.id IS NOT NULL
+        ORDER BY c.id
+        ');
 
-         
+        $clientes = [];
 
+        while(count($dados) > 0){
 
-         $kickoff_inicial = isset($request->data_kickoff_inicial) ? date('Y-m-d', strtotime($request->data_kickoff_inicial)) : date('Y-m-d', strtotime('2000-01-01'));
-         $kickoff_final = isset($request->data_kickoff_final) ? date('Y-m-d', strtotime($request->data_kickoff_final)) : date('Y-m-d');
-         $ultimo_dia_inicial = isset($request->data_cancelamento_inicial) ? date('Y-m-d', strtotime($request->data_cancelamento_inicial)) : date('Y-m-d', strtotime('2000-01-01'));
-         $ultimo_dia_final = isset($request->data_cancelamento_final) ? date('Y-m-d', strtotime($request->data_cancelamento_final)) : date('Y-m-d');
-        
-         $query_clientes_ativos = "
-         SELECT c2.empresa, c2.id, SUM(c.fee) AS fee, 0 AS total_alocados, c2.id AS cliente_id  FROM contratos c 
-         LEFT JOIN clientes c2 ON c2.id = c.cliente_id 
-         WHERE ";
-         if(isset($request->projetos) && $request->projetos == 1){
-            $query_clientes_ativos .= " c.projetos = 'Sim' AND";
-         }
-         $query_clientes_ativos .=" ((c.data_kickoff IS NOT NULL 
-         AND c.data_kickoff > '$kickoff_inicial'
-         AND data_solicitacao_cancelamento IS NULL 
-         AND data_ultimo_dia IS NULL ) OR
-         (c.data_kickoff IS NOT NULL 
-         AND c.data_kickoff > '$kickoff_inicial'
-         AND data_ultimo_dia > CURRENT_DATE() )) GROUP BY c2.id
-         ORDER BY c2.empresa
-         ";
+            $id = $dados[array_key_first($dados)]->cliente_id;
 
-         if(isset($request->filterTab)){
-            switch($request->filterTab){
-                case 'primeiro_mes':
-                    $query_clientes_ativos = "SELECT c2.empresa, c2.id, SUM(c.fee) AS fee, 0 AS total_alocados, c2.id AS cliente_id  FROM contratos c 
-                    LEFT JOIN clientes c2 ON c2.id = c.cliente_id 
-                    WHERE 
-                    c.data_kickoff IS NOT NULL 
-                    AND c.data_kickoff > '$kickoff_inicial'
-                    AND CURRENT_DATE() < DATE_ADD(c.data_kickoff, INTERVAL +30 DAY)";
-         if(isset($request->projetos) && $request->projetos == 1){
-            $query_clientes_ativos .= "AND c.projetos = 'Sim'";
-         }
-         $query_clientes_ativos .="GROUP BY c2.id
-         ORDER BY c2.empresa
-         ";
-                    break;
-                case 'ultimo_mes':
-                        $query_clientes_ativos = "SELECT c2.empresa, c2.id, SUM(c.fee) AS fee, 0 AS total_alocados, c2.id AS cliente_id  FROM contratos c 
-                        LEFT JOIN clientes c2 ON c2.id = c.cliente_id 
-                        WHERE c.data_kickoff IS NOT NULL 
-                        AND c.data_ultimo_dia > CURRENT_DATE()
-                        AND CURRENT_DATE() < DATE_ADD(c.data_ultimo_dia, INTERVAL +30 DAY) ";
-         if(isset($request->projetos) && $request->projetos == 1){
-            $query_clientes_ativos .= "AND c.projetos = 'Sim'";
-         }
-         $query_clientes_ativos .="GROUP BY c2.id
-         ORDER BY c2.empresa
-         ";
-                        break;
-                case 'recorrentes_mes':
-                        $query_clientes_ativos = "SELECT c2.empresa, c2.id, SUM(c.fee) AS fee, 0 AS total_alocados, c2.id AS cliente_id  FROM contratos c 
-                        LEFT JOIN clientes c2 ON c2.id = c.cliente_id 
-                        WHERE c.data_kickoff IS NOT NULL 
-                        AND DATE_ADD(c.data_kickoff, INTERVAL +30 DAY) < CURRENT_DATE()
-                        AND c.data_solicitacao_cancelamento IS NULL ";
-         if(isset($request->projetos) && $request->projetos == 1){
-            $query_clientes_ativos .= "AND c.projetos = 'Sim'";
-         }
-         $query_clientes_ativos .="GROUP BY c2.id
-         ORDER BY c2.empresa
-         ";
-                        break;
-                case 'pendentes_mes':
-                        $query_clientes_ativos = "SELECT c2.empresa, c2.id, SUM(c.fee) AS fee, 0 AS total_alocados, c2.id AS cliente_id  FROM contratos c 
-                        LEFT JOIN clientes c2 ON c2.id = c.cliente_id 
-                        WHERE c.data_kickoff IS NULL";
-         if(isset($request->projetos) && $request->projetos == 1){
-            $query_clientes_ativos .= " AND c.projetos = 'Sim'";
-         }
-         $query_clientes_ativos .="GROUP BY c2.id
-         ORDER BY c2.empresa
-         ";
-                        break;
+            $contratos_cliente = array_filter($dados, function($dados) use($id){
+                return $dados->cliente_id == $id;
+              });
+
+            $cliente = [
+                'cliente_id' => $contratos_cliente[array_key_first($contratos_cliente)]->cliente_id, 
+                'empresa' => $contratos_cliente[array_key_first($contratos_cliente)]->empresa, 
+                'projetos' => $contratos_cliente[array_key_first($contratos_cliente)]->projetos, 
+                'contratos' => []
+            ];
+
+            while(count($contratos_cliente) > 0){
+                $id_contrato = $contratos_cliente[array_key_first($contratos_cliente)]->contrato_id;
+                $contratos = array_filter($contratos_cliente, function($contratos_cliente) use($id_contrato){
+                    return $contratos_cliente->contrato_id == $id_contrato;
+                  });
+                
+                $contratos_alocados = [];
+
+                foreach($contratos AS $contrato){
+                    if($contrato->contrato_alocado != null){
+                        array_push($contratos_alocados, [
+                            'servico' => $contrato->contrato_alocado
+                        ]);
+                    }
+                }
+
+                array_push($cliente['contratos'], [
+                    'contrato_id' => $contratos_cliente[array_key_first($contratos_cliente)]->contrato_id,
+                    'data_kickoff' => $contratos_cliente[array_key_first($contratos_cliente)]->data_kickoff,
+                    'fee' => $contratos_cliente[array_key_first($contratos_cliente)]->fee,
+                    'data_solicitacao_cancelamento' => $contratos_cliente[array_key_first($contratos_cliente)]->data_solicitacao_cancelamento,
+                    'data_ultimo_dia' => $contratos_cliente[array_key_first($contratos_cliente)]->data_ultimo_dia,
+                    'servico' => $contratos_cliente[array_key_first($contratos_cliente)]->servico,
+                    'contrato_alocado' => $contratos_alocados
+                ]);
+
+                $contratos_cliente = array_filter($contratos_cliente, function($contratos_cliente) use($id_contrato){
+                    return $contratos_cliente->contrato_id != $id_contrato;
+                  });
+                
             }
-         }
 
+            $dados = array_filter($dados, function($dados) use($id){
+                return $dados->cliente_id != $id;
+              });
 
-         $clientes_ativos = array();
-        if(!isset($request->data_cancelamento_inicial)){
-            $clientes_ativos = DB::select($query_clientes_ativos);
-        }
-        
-
-        $clientes_ativos = $this->filtros_tabela_ativos_contratos_ativos($request, $clientes_ativos);
-
-        $query_clientes_cancelados = "
-            SELECT c2.empresa, c2.id, SUM(c.fee) AS fee, 0 AS total_alocados, c2.id AS cliente_id FROM contratos c 
-            LEFT JOIN clientes c2 ON c2.id = c.cliente_id 
-            WHERE c.data_kickoff IS NOT NULL 
-            AND c.data_kickoff > '$kickoff_inicial'
-            AND data_solicitacao_cancelamento IS NOT NULL 
-            AND data_ultimo_dia IS NOT NULL 
-            AND data_ultimo_dia > '$ultimo_dia_inicial'
-            AND data_ultimo_dia < '$ultimo_dia_final'";
-            if(isset($request->projetos) && $request->projetos == 1){
-                $query_clientes_cancelados .= "AND c.projetos = 'Sim'";
-             }
-             $query_clientes_cancelados .= "
-            GROUP BY c2.id
-            ORDER BY c2.empresa
-        ";
-
-        $clientes_cancelados = DB::select($query_clientes_cancelados);
-
-        $clientes_cancelados = $this->filtros_tabela_cancelados_contratos_ativos($request, $clientes_cancelados);
-
-        $fee_total = 0;
-        $fee_perdido = 0;
-        foreach($clientes_ativos AS $cliente){
-            $contratos = DB::select("
-            SELECT c.id AS contrato_id, s.nome AS servico FROM contratos c 
-            LEFT JOIN servicos s ON c.servico_id = s.id
-            WHERE c.cliente_id = '$cliente->id' 
-            AND c.data_kickoff IS NOT NULL 
-            AND (c.data_ultimo_dia IS NULL OR c.data_ultimo_dia > CURRENT_DATE())
-            ");
-            
-            $cliente->contratos = $contratos;
-            foreach($cliente->contratos AS $contrato){
-                $alocados = Contratos_alocados::select(
-                    'servicos.nome AS servico'
-                )
-                ->join('sub_contratos', 'sub_contratos.id', '=', 'contratos_alocados.subcontrato_id')
-                ->join('servicos', 'servicos.id', '=', 'sub_contratos.servico_id')
-                ->where('contrato_id', $contrato->contrato_id)
-                ->get();
-                $contrato->alocados = $alocados;
-                $cliente->total_alocados += count($alocados);
-            }
-            $fee_total += $cliente->fee;
-            $cliente->fee = number_format($cliente->fee,2,",",".");
+            array_push($clientes, $cliente);
         }
 
-        foreach($clientes_cancelados AS $cliente){
-            $contratos = DB::select("
-            SELECT c.id AS contrato_id, s.nome AS servico FROM contratos c 
-            LEFT JOIN servicos s ON c.servico_id = s.id
-            WHERE c.cliente_id = '$cliente->id'
-            AND c.data_kickoff IS NOT NULL 
-            AND data_solicitacao_cancelamento IS NOT NULL 
-            AND data_ultimo_dia IS NOT NULL 
-            ");
-            
-            $cliente->contratos = $contratos;
-            foreach($cliente->contratos AS $contrato){
-                $alocados = Contratos_alocados::select(
-                    'servicos.nome AS servico'
-                )
-                ->join('sub_contratos', 'sub_contratos.id', '=', 'contratos_alocados.subcontrato_id')
-                ->join('servicos', 'servicos.id', '=', 'sub_contratos.servico_id')
-                ->where('contrato_id', $contrato->contrato_id)
-                ->get();
-                $contrato->alocados = $alocados;
-                $cliente->total_alocados += count($alocados);
-            }
-            $fee_total += $cliente->fee;
-            $fee_perdido += $cliente->fee;
-            $cliente->fee = number_format($cliente->fee,2,",",".");
-        }
-        $saldo_financeiro = $fee_total - $fee_perdido;
-        $saldo_financeiro = number_format($saldo_financeiro,2,",",".");
-        $fee_total = number_format($fee_total,2,",",".");
-        $fee_perdido = number_format($fee_perdido,2,",",".");
+        $clientes = array_filter($clientes, function($clientes) {
+            return count($clientes['contratos']) > 0;
+          });
 
-
-        /**
-         * ----------------------------------------------------------
-         */
-
-        return view("layouts.gestao.visaoAtivos", compact('infos_func', 'clientes_ativos', 'clientes_cancelados', 'primeiro_mes', 'ultimo_mes',
-                        'ativos_recorrentes', 'pendentes', 'total', 'saldo_financeiro', 'fee_total', 'fee_perdido', 'clientes', 'alocados_primeiro_mes',
-                        'alocados_ultimo_mes', 'alocados_ativos_recorrentes', 'alocados_pendentes'
-                    ));
+        return view("layouts.gestao.visaoAtivos", compact('infos_func', 'clientes'));
     }
 
     private function filtros_tabela_ativos_contratos_ativos(Request $request, $dados){

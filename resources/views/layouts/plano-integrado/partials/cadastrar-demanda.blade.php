@@ -21,6 +21,9 @@
             <option value="JAN/2023">JANEIRO/2023</option>
             <option value="FEV/2023">FEVEREIRO/2023</option>
             <option value="MAR/2023">MARÇO/2023</option>
+            <option value="ABR/2023">ABRIL/2023</option>
+            <option value="MAI/2023">MAIO/2023</option>
+            <option value="JUN/2023">JUNHO/2023</option>
             <option value="OUT/2022">OUTUBRO/2022</option>
             <option value="NOV/2022">NOVEMBRO/2022</option>
             <option value="DEZ/2022">DEZEMBRO/2022</option>

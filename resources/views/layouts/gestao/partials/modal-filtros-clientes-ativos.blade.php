@@ -15,9 +15,6 @@
                     <div class="form-group" id="">
                         <select id="myCliente" class="form-control" name="cliente_id">
                             <option value=""></option>
-                            @foreach ($clientes as $cliente)
-                                <option value="{{$cliente->id}}">{{$cliente->empresa}}</option>
-                            @endforeach
                         </select>
                     </div>
                     
